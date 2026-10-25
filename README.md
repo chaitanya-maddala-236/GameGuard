@@ -124,7 +124,7 @@ GitHub Actions runs the same lint/tests and builds the Docker image. It does not
 
 ## Deploy
 
-`render.yaml` defines an API, dashboard, and Postgres through Render Blueprints. See [deployment runbook](docs/deployment.md) and [deployment status](docs/deployment-status.md). Render's free demo web services sleep and free PostgreSQL expires after 30 days; upgrade before relying on persisted data. The live deployment state is recorded only after actual health, readiness, ingestion, persistence, review, and dashboard smoke checks succeed.
+`render.yaml` defines the API and dashboard as free Render web services. The deployed API uses a separate Neon PostgreSQL project; the pooled connection string is stored only as Render's `DATABASE_URL` secret and is excluded from Git. Both services communicate over their public HTTPS URLs because Render's free web services cannot use private service networking. See the [deployment runbook](docs/deployment.md) and [verified deployment status and metrics](docs/deployment-status.md). Free Render services can sleep when idle, and the Neon Free plan has usage limits; this setup is for a demo, not sustained production use.
 
 ## Responsible use
 

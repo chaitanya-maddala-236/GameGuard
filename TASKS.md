@@ -12,5 +12,5 @@
 - [x] Add Docker Compose, health checks, GitHub Actions, Render Blueprint, and deployment/runbook docs.
 - [x] Verify local API/dashboard startup, persistence, and monitoring; record Docker Engine unavailability honestly.
 - [x] Publish the private repository to GitHub; run CI including its Docker build.
-- [x] Record measured model/service metrics, tested flows, verified URLs, known limitations, and the remaining hosting action.
-- [ ] Apply the Render Blueprint and run cloud smoke checks after a Render account is connected.
+- [x] Record measured model/service metrics, tested flows, verified URLs, and remaining hosting limitations.
+- [x] Apply the Render Blueprint, connect the dedicated Neon database, verify API readiness and dashboard health, and record live operational metrics.
