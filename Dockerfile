@@ -20,4 +20,4 @@ COPY artifacts/models/gameguard-if-v1 ./artifacts/models/gameguard-if-v1
 RUN mkdir -p /app/data
 
 EXPOSE 8000
-CMD ["sh", "-c", "python -m gameguard.migrate && uvicorn gameguard.api:app --host 0.0.0.0 --port ${PORT:-8000}"]
+CMD ["./scripts/start-api.sh"]

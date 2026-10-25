@@ -4,7 +4,6 @@ services:
     runtime: docker
     dockerfilePath: ./Dockerfile
     dockerContext: .
-    dockerCommand: sh -c "python -m gameguard.migrate && uvicorn gameguard.api:app --host 0.0.0.0 --port $PORT"
     plan: free
     healthCheckPath: /ready
     envVars:
@@ -15,14 +14,17 @@ services:
       - key: API_KEY
         generateValue: true
       - key: ALLOWED_ORIGINS
-        value: https://gameguard-dashboard.onrender.com
+        fromService:
+          name: gameguard-dashboard
+          type: web
+          property: host
 
   - type: web
     name: gameguard-dashboard
     runtime: docker
     dockerfilePath: ./Dockerfile
     dockerContext: .
-    dockerCommand: sh -c "streamlit run dashboard/app.py --server.address 0.0.0.0 --server.port $PORT --server.headless true"
+    dockerCommand: ./scripts/start-dashboard.sh
     plan: free
     healthCheckPath: /_stcore/health
     envVars:
