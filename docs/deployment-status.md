@@ -6,7 +6,8 @@ Last checked: 2026-10-26.
 
 - Python 3.11 and 3.13 are installed.
 - Docker CLI is installed, but its Docker Desktop Linux Engine is not running, so Compose build/start cannot currently be executed here.
-- Git identity is configured. The isolated `GameGuard` Git repository is initialized on `main`; GitHub remote/push is pending.
+- Git identity is configured. The isolated project is published as the private repository [chaitanya-maddala-236/GameGuard](https://github.com/chaitanya-maddala-236/GameGuard), branch `main`, initial source commit `d86e0c9`.
+- GitHub Actions run [40226680721](https://github.com/chaitanya-maddala-236/GameGuard/actions/runs/40226680721) completed successfully, including Ruff format/lint, pytest, and `docker build` on GitHub's runner.
 - GitHub authentication was verified for `@chaitanya-maddala-236` through the configured credential manager without printing credential material.
 - No Render credentials or live service URLs have been verified. No cloud resource has been provisioned.
 - `render.yaml` prepares a free-demo API, dashboard, and Postgres. Render documents free web services sleep after 15 idle minutes; free Postgres expires after 30 days. It must be upgraded before persistent use.
@@ -15,8 +16,8 @@ Last checked: 2026-10-26.
 
 ## Release checklist
 
-- GitHub remote, commit, and CI run: pending.
+- GitHub private repository, `main` branch, and CI Docker build: verified.
 - Render API/dashboard/database: not provisioned.
 - Production health/readiness, event persistence, feedback, dashboard smoke: pending because no Render service exists.
-- Verified URLs: none.
-- Remaining deployment action if no Render account connection is available: connect the GitHub repository as a Render Blueprint and apply the proposed API, dashboard, and database resources; then upgrade the free database/service for persistent use.
+- Verified URLs: GitHub repository and passing Actions run above. No deployed app URLs exist.
+- Remaining deployment action: connect the private GitHub repository to a Render account and apply the Blueprint's API, dashboard, and database resources. The Blueprint uses free demo plans; upgrade the database and web services before relying on persistent telemetry.

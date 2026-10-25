@@ -11,5 +11,6 @@
 - [x] Add API, database, and model tests; run lint and tests; smoke-check the dashboard and fix failures.
 - [x] Add Docker Compose, health checks, GitHub Actions, Render Blueprint, and deployment/runbook docs.
 - [x] Verify local API/dashboard startup, persistence, and monitoring; record Docker Engine unavailability honestly.
-- [ ] Publish the repository to GitHub and deploy if account credentials and hosting authorization are available.
-- [ ] Record final measured metrics, tested flows, URLs, known limitations, and any single external action still needed.
+- [x] Publish the private repository to GitHub; run CI including its Docker build.
+- [x] Record measured model/service metrics, tested flows, verified URLs, known limitations, and the remaining hosting action.
+- [ ] Apply the Render Blueprint and run cloud smoke checks after a Render account is connected.
