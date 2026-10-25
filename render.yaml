@@ -17,7 +17,7 @@ services:
         fromService:
           name: gameguard-dashboard
           type: web
-          property: host
+          envVarKey: RENDER_EXTERNAL_URL
 
   - type: web
     name: gameguard-dashboard
@@ -32,7 +32,7 @@ services:
         fromService:
           name: gameguard-api
           type: web
-          property: host
+          property: hostport
       - key: API_KEY
         fromService:
           name: gameguard-api

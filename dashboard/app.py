@@ -13,7 +13,7 @@ import streamlit as st
 
 API_BASE = os.getenv("API_BASE_URL", "http://localhost:8000").rstrip("/")
 if not API_BASE.startswith(("http://", "https://")):
-    API_BASE = f"https://{API_BASE}"
+    API_BASE = f"http://{API_BASE}"
 API_KEY = os.getenv("API_KEY", "")
 HEADERS = {"X-API-Key": API_KEY} if API_KEY else {}
 SOURCE_FIELDS = {
