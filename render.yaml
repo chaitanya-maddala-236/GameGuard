@@ -32,7 +32,7 @@ services:
         fromService:
           name: gameguard-api
           type: web
-          property: hostport
+          envVarKey: RENDER_EXTERNAL_URL
       - key: API_KEY
         fromService:
           name: gameguard-api
