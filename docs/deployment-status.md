@@ -4,7 +4,7 @@ Checked 2026-10-26 (Asia/Kolkata). This is a free demo deployment.
 
 ## GitHub and CI
 
-- Private repository: [chaitanya-maddala-236/GameGuard](https://github.com/chaitanya-maddala-236/GameGuard), `main` branch.
+- Public repository: [chaitanya-maddala-236/GameGuard](https://github.com/chaitanya-maddala-236/GameGuard), `main` branch.
 - Latest verified application revision: `4947d71` (`Format deployment CORS configuration`).
 - CI for that revision: [GitHub Actions run 40228979779](https://github.com/chaitanya-maddala-236/GameGuard/actions/runs/40228979779) succeeded. It runs Ruff format/lint, pytest, and a Docker image build.
 
@@ -12,8 +12,8 @@ Checked 2026-10-26 (Asia/Kolkata). This is a free demo deployment.
 
 | Component | URL | Provider state |
 | --- | --- | --- |
-| Dashboard | [gameguard-dashboard-x69x.onrender.com](https://gameguard-dashboard-x69x.onrender.com/) | Render Free web service, Live on `4947d71` |
-| API | [gameguard-api-x69x.onrender.com](https://gameguard-api-x69x.onrender.com/) | Render Free web service, Live on `4947d71` |
+| Dashboard | [gameguard-dashboard-x69x.onrender.com](https://gameguard-dashboard-x69x.onrender.com/) | Render Free web service, live and auto-deployed from `main` |
+| API | [gameguard-api-x69x.onrender.com](https://gameguard-api-x69x.onrender.com/) | Render Free web service, live and auto-deployed from `main` |
 | API readiness | [`/ready`](https://gameguard-api-x69x.onrender.com/ready) | `ready`, model `gameguard-if-v1`, database `connected` |
 | API health | [`/health`](https://gameguard-api-x69x.onrender.com/health) | Liveness endpoint |
 

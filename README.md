@@ -1,8 +1,35 @@
 # GameGuard
 
-**GameGuard scores GPU/CPU hardware telemetry collected during a game session and flags unusual measurements for investigation.** It does not identify cheating or malicious behavior. Its anomaly score is not a probability.
+**Find unusual game-session hardware telemetry sooner, so performance and support teams can investigate it.** GameGuard validates GPU/CPU measurements, scores unusual patterns, and puts reviewable flags in an operations dashboard. It does not diagnose root causes, identify cheating, or assign intent.
 
-This is a reproducible, unsupervised telemetry monitoring system: licensed Parquet data, validation and feature engineering, Isolation Forest with two comparison baselines, a versioned trained model, FastAPI scoring and ingestion, SQLite/PostgreSQL persistence, reviewer feedback, monitoring metrics, Streamlit dashboard, Docker Compose, GitHub Actions, and a Render deployment blueprint.
+[![CI](https://github.com/chaitanya-maddala-236/GameGuard/actions/workflows/ci.yml/badge.svg)](https://github.com/chaitanya-maddala-236/GameGuard/actions/workflows/ci.yml)
+
+[**Live dashboard**](https://gameguard-dashboard-x69x.onrender.com/) · [API readiness](https://gameguard-api-x69x.onrender.com/ready) · [API health](https://gameguard-api-x69x.onrender.com/health) · [Deployment and metrics](docs/deployment-status.md)
+
+## The business problem
+
+During a game session, CPU/GPU readings change with the game, scene, and machine. Support and performance teams need a consistent way to surface unusual measurements for investigation without treating every spike as a fault or as suspicious player behavior. GameGuard provides a repeatable scoring pipeline and human-review dashboard for that triage workflow.
+
+## Results at a glance
+
+| Result | Measured value | Context |
+| --- | ---: | --- |
+| Telemetry dataset | **95,893 rows** | One ~90-minute Resident Evil 4 Remake capture on one RTX 5080 workstation |
+| Engineered model inputs | **20 features** | Built from the validated source schema |
+| Isolation Forest validation alert rate | **1.001%** | Chronological validation split (14,384 rows) |
+| Isolation Forest later-time test alert rate | **5.026%** | Held-out test split (14,384 rows); **not** accuracy or recall |
+| Local synthetic API load | **80 / 80 succeeded**, **0 errors** | Concurrency 5; **5.97 requests/sec**; request p95 **2,210 ms** |
+| Model-scoring latency p95 | **273 ms** | Local smoke run; request latency includes database writes |
+
+> The dataset has no verified anomaly labels. Alert rates are descriptive signals, not precision, recall, or proof of real-world anomaly detection. The model's test alert rate varied by **18.67 percentage points** across five time blocks, so validate it on representative, reviewed data before operational use.
+
+### Live demo status
+
+The dashboard is connected to the API and Neon database. No telemetry has been ingested into the live demo, so live events, alerts, and alert rate are **0**, and live score latency is not yet available. The measured model and load-test results above are offline/local results, not live-player data.
+
+## What the project includes
+
+Reproducible data validation and feature engineering, Isolation Forest with two comparison baselines, a versioned model, FastAPI scoring and ingestion, SQLite/PostgreSQL persistence, reviewer feedback, Prometheus and drift metrics, a Streamlit dashboard, Docker Compose, GitHub Actions, and a Render deployment blueprint.
 
 ## Data status and limitations
 
@@ -104,13 +131,13 @@ The trained model's measured offline alert rates are:
 
 | Detector | Validation alerts (14,384 rows) | Later-time test alerts (14,384 rows) | Test alert-rate range across five time blocks |
 | --- | ---: | ---: | ---: |
-| Isolation Forest (primary) | 1.001% | 5.026% | 18.67 percentage points |
+| **Isolation Forest (primary)** | **1.001%** | **5.026%** | **18.67 percentage points** |
 | Robust statistical thresholds | 1.168% | 3.824% | 19.05 percentage points |
 | Local Outlier Factor | 1.001% | 1.550% | 7.72 percentage points |
 
 The Isolation Forest threshold is the 99th percentile of validation scores. Its test rate rises above the intended 1% validation alert budget and varies substantially over time. These are unlabeled-data alert rates, not accuracy or recall. A synthetic 128-row scoring check found every injected score above its paired control score, but only 4.69% of injected events crossed the model threshold; synthetic inputs are not evidence of real anomaly detection. Training plus evaluation took 12.37 seconds on the training machine. The complete checksum, score quantiles, block rates, data validation, and run measurements are in [`metrics.json`](artifacts/models/gameguard-if-v1/metrics.json).
 
-`/v1/metrics/summary` and `/metrics` report measured traffic throughput, alert rate, quality, score distribution, process resources, error count, and scoring latency. `/v1/monitoring` includes PSI when at least 50 recent events exist. PSI indicates input feature distribution change, not model-performance degradation. A local loopback run on this workstation completed 80 synthetic requests at concurrency 5 with 0 errors, 5.97 requests/sec, and p50/p95/p99 request latency of 530/2,210/4,164 ms. These are a single machine-specific SQLite-backed run, not a production capacity estimate. The measured results and smoke checks are in [`local-smoke-metrics.json`](docs/local-smoke-metrics.json). Run `python scripts/load_test.py --requests 100 --concurrency 5` against a running API to repeat the synthetic test on another host.
+`/v1/metrics/summary` and `/metrics` report measured traffic throughput, alert rate, quality, score distribution, process resources, error count, and scoring latency. `/v1/monitoring` includes PSI when at least 50 recent events exist. PSI indicates input feature distribution change, not model-performance degradation. A local loopback run on this workstation completed **80/80 synthetic requests** at concurrency 5 with **0 errors**, **5.97 requests/sec**, and p50/p95/p99 request latency of **530/2,210/4,164 ms**. Model-scoring p95 was **273 ms**. These are a single machine-specific SQLite-backed run, not a production-capacity estimate. The measured results and smoke checks are in [`local-smoke-metrics.json`](docs/local-smoke-metrics.json). Run `python scripts/load_test.py --requests 100 --concurrency 5` against a running API to repeat the synthetic test on another host.
 
 ## Tests and CI
 
