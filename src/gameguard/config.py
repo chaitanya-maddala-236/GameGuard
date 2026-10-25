@@ -9,8 +9,7 @@ from pathlib import Path
 
 def _allowed_origins() -> tuple[str, ...]:
     origins = (
-        item.strip()
-        for item in os.getenv("ALLOWED_ORIGINS", "http://localhost:8501").split(",")
+        item.strip() for item in os.getenv("ALLOWED_ORIGINS", "http://localhost:8501").split(",")
     )
     return tuple(
         origin if origin.startswith(("http://", "https://")) else f"https://{origin}"
