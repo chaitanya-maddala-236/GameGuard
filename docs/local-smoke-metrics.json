@@ -1,0 +1,33 @@
+{
+  "recorded_at_utc": "2026-10-25T19:32:18Z",
+  "environment": "Local Windows workstation; SQLite; loopback API and dashboard",
+  "synthetic_load_test": {
+    "endpoint": "POST /v1/events",
+    "request_source": "synthetic_load_test",
+    "requests": 80,
+    "concurrency": 5,
+    "successful": 80,
+    "errors": 0,
+    "wall_seconds": 13.402,
+    "throughput_events_per_second": 5.97,
+    "request_latency_ms_p50": 529.616,
+    "request_latency_ms_p95": 2210.231,
+    "request_latency_ms_p99": 4163.597
+  },
+  "smoke_checks": {
+    "api_health": "passed",
+    "api_readiness_with_model_and_database": "passed",
+    "event_persistence_and_idempotent_retry": "passed",
+    "dashboard_health_http_status": 200,
+    "prometheus_endpoint_http_status": 200,
+    "persisted_events_in_local_database_after_load": 81,
+    "flagged_events_in_local_database_after_load": 44,
+    "p95_model_scoring_latency_ms_after_load": 272.769,
+    "monitoring_note": "Alert counts came from this smoke fixture and synthetic request payloads; there is no ground truth and these are not accuracy or recall metrics."
+  },
+  "limitations": [
+    "Single local run, not a production capacity estimate.",
+    "Request latency includes API and SQLite persistence; it differs from model-scoring latency.",
+    "No Docker or cloud deployment was exercised in this run."
+  ]
+}

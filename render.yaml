@@ -1,0 +1,46 @@
+services:
+  - type: web
+    name: gameguard-api
+    runtime: docker
+    dockerfilePath: ./Dockerfile
+    dockerContext: .
+    dockerCommand: sh -c "python -m gameguard.migrate && uvicorn gameguard.api:app --host 0.0.0.0 --port $PORT"
+    plan: free
+    healthCheckPath: /ready
+    envVars:
+      - key: DATABASE_URL
+        fromDatabase:
+          name: gameguard-db
+          property: connectionString
+      - key: MODEL_PATH
+        value: /app/artifacts/models/gameguard-if-v1/model.joblib
+      - key: API_KEY
+        generateValue: true
+      - key: ALLOWED_ORIGINS
+        value: https://gameguard-dashboard.onrender.com
+
+  - type: web
+    name: gameguard-dashboard
+    runtime: docker
+    dockerfilePath: ./Dockerfile
+    dockerContext: .
+    dockerCommand: sh -c "streamlit run dashboard/app.py --server.address 0.0.0.0 --server.port $PORT --server.headless true"
+    plan: free
+    healthCheckPath: /_stcore/health
+    envVars:
+      - key: API_BASE_URL
+        fromService:
+          name: gameguard-api
+          type: web
+          property: host
+      - key: API_KEY
+        fromService:
+          name: gameguard-api
+          type: web
+          envVarKey: API_KEY
+
+databases:
+  - name: gameguard-db
+    databaseName: gameguard
+    user: gameguard
+    plan: free

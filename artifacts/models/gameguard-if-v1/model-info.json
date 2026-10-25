@@ -1,0 +1,468 @@
+{
+  "model_version": "gameguard-if-v1",
+  "created_at_utc": "2026-10-25T19:19:35.313108+00:00",
+  "dataset": "rmems/gaming-telemetry",
+  "dataset_config": "re4",
+  "dataset_sha256": "5830ed487fb9b0e330894009be96474b55b2e2e136a1b09e578ded6d8f9f9b19",
+  "source_rows": 95893,
+  "feature_names": [
+    "gpu_power_w",
+    "gpu_temperature_c",
+    "graphics_clock_mhz",
+    "memory_clock_mhz",
+    "pcie_rx_mbps",
+    "pcie_tx_mbps",
+    "pstate",
+    "throttle_reason_count",
+    "power_cap_active",
+    "thermal_throttle_active",
+    "hardware_slowdown_active",
+    "fan_speed_perc",
+    "memory_used_mb",
+    "vram_used_perc",
+    "encoder_util_perc",
+    "decoder_util_perc",
+    "cpu_tctl_c",
+    "cpu_ccd1_c",
+    "cpu_ccd2_c",
+    "cpu_package_power_w"
+  ],
+  "detector": "Isolation Forest",
+  "threshold": 0.11180484399749285,
+  "threshold_rule": "99th percentile of chronological validation anomaly scores (1% alert budget)",
+  "alert_budget": 0.01,
+  "random_seed": 2026,
+  "split": {
+    "method": "chronological, sorted by timestamp_ms",
+    "train_rows": 67125,
+    "validation_rows": 14384,
+    "test_rows": 14384,
+    "train_end_timestamp_ms": 1775995945812,
+    "validation_start_timestamp_ms": 1775995945868,
+    "validation_end_timestamp_ms": 1775996758766,
+    "test_start_timestamp_ms": 1775996758823,
+    "test_end_timestamp_ms": 1775997567045
+  },
+  "source_validation": {
+    "rows": 95893,
+    "missing_values": {},
+    "duplicate_timestamps": 0,
+    "out_of_range": {},
+    "unexpected_columns": [],
+    "monotonic_timestamps": true
+  },
+  "feature_reference": {
+    "medians": [
+      289.464,
+      61.0,
+      2812.0,
+      15001.0,
+      1183.651,
+      81.842,
+      0.0,
+      0.0,
+      0.0,
+      0.0,
+      0.0,
+      75.0,
+      13490.0,
+      82.74550696190884,
+      0.0,
+      0.0,
+      64.375,
+      61.5,
+      46.5,
+      120.34886932373047
+    ],
+    "scales": [
+      16.305634799999986,
+      1.4826,
+      11.8608,
+      1.0,
+      521.8203438,
+      21.340544400000006,
+      1.0,
+      1.0,
+      1.0,
+      1.0,
+      1.0,
+      1.0,
+      265.3854,
+      1.6278316874195033,
+      1.0,
+      1.0,
+      2.59455,
+      4.262474999999999,
+      4.4478,
+      6.962050794982909
+    ]
+  },
+  "reference_distribution": {
+    "gpu_power_w": {
+      "edges": [
+        180.669,
+        266.438,
+        275.155,
+        281.306,
+        285.705,
+        289.464,
+        293.496,
+        298.009,
+        302.975,
+        310.051,
+        363.204
+      ],
+      "counts": [
+        6706,
+        6711,
+        6713,
+        6714,
+        6711,
+        6715,
+        6716,
+        6709,
+        6716,
+        6714
+      ]
+    },
+    "gpu_temperature_c": {
+      "edges": [
+        49.0,
+        59.0,
+        60.0,
+        61.0,
+        62.0,
+        66.0
+      ],
+      "counts": [
+        5434,
+        5870,
+        13706,
+        20092,
+        22023
+      ]
+    },
+    "graphics_clock_mhz": {
+      "edges": [
+        2760.0,
+        2790.0,
+        2797.0,
+        2805.0,
+        2812.0,
+        2820.0,
+        2827.0,
+        2887.0
+      ],
+      "counts": [
+        5823,
+        6660,
+        8132,
+        12715,
+        12129,
+        10698,
+        10968
+      ]
+    },
+    "memory_clock_mhz": {
+      "edges": [
+        15000.5,
+        15001.5
+      ],
+      "counts": [
+        67125
+      ]
+    },
+    "pcie_rx_mbps": {
+      "edges": [
+        2.957,
+        645.8328,
+        767.0378,
+        887.2348000000001,
+        1024.8446000000001,
+        1183.651,
+        1277.5600000000002,
+        1414.1266,
+        1673.193,
+        2038.0302,
+        10148.384
+      ],
+      "counts": [
+        6713,
+        6712,
+        6713,
+        6712,
+        6712,
+        6713,
+        6712,
+        6713,
+        6712,
+        6713
+      ]
+    },
+    "pcie_tx_mbps": {
+      "edges": [
+        5.719,
+        46.172,
+        61.5566,
+        68.0832,
+        74.1902,
+        81.842,
+        87.779,
+        91.9788,
+        96.92320000000001,
+        111.0026,
+        3055.512
+      ],
+      "counts": [
+        6712,
+        6713,
+        6713,
+        6712,
+        6711,
+        6713,
+        6713,
+        6713,
+        6712,
+        6713
+      ]
+    },
+    "pstate": {
+      "edges": [
+        -0.5,
+        0.5
+      ],
+      "counts": [
+        67125
+      ]
+    },
+    "throttle_reason_count": {
+      "edges": [
+        0.0,
+        1.0
+      ],
+      "counts": [
+        67125
+      ]
+    },
+    "power_cap_active": {
+      "edges": [
+        0.0,
+        1.0
+      ],
+      "counts": [
+        67125
+      ]
+    },
+    "thermal_throttle_active": {
+      "edges": [
+        -0.5,
+        0.5
+      ],
+      "counts": [
+        67125
+      ]
+    },
+    "hardware_slowdown_active": {
+      "edges": [
+        -0.5,
+        0.5
+      ],
+      "counts": [
+        67125
+      ]
+    },
+    "fan_speed_perc": {
+      "edges": [
+        74.0,
+        75.0,
+        76.0
+      ],
+      "counts": [
+        1424,
+        65701
+      ]
+    },
+    "memory_used_mb": {
+      "edges": [
+        8959.0,
+        12790.0,
+        13208.0,
+        13339.0,
+        13415.0,
+        13490.0,
+        13543.0,
+        13587.0,
+        13743.0,
+        14053.0,
+        15164.0
+      ],
+      "counts": [
+        6702,
+        6671,
+        6754,
+        6371,
+        6986,
+        6677,
+        6758,
+        6775,
+        6717,
+        6714
+      ]
+    },
+    "vram_used_perc": {
+      "edges": [
+        54.95307612095933,
+        78.45181868367786,
+        81.0157639698215,
+        81.81929706189045,
+        82.28546893209838,
+        82.74550696190884,
+        83.07060050297491,
+        83.34048948046372,
+        84.29736858246949,
+        86.19885910568607,
+        93.01355578727842
+      ],
+      "counts": [
+        6702,
+        6671,
+        6754,
+        6371,
+        6986,
+        6677,
+        6758,
+        6775,
+        6717,
+        6714
+      ]
+    },
+    "encoder_util_perc": {
+      "edges": [
+        -0.5,
+        0.5
+      ],
+      "counts": [
+        67125
+      ]
+    },
+    "decoder_util_perc": {
+      "edges": [
+        -0.5,
+        0.5
+      ],
+      "counts": [
+        67125
+      ]
+    },
+    "cpu_tctl_c": {
+      "edges": [
+        58.0,
+        61.625,
+        62.5,
+        63.125,
+        63.75,
+        64.375,
+        65.125,
+        66.0,
+        67.0,
+        68.375,
+        79.625
+      ],
+      "counts": [
+        5995,
+        6871,
+        6383,
+        6660,
+        6650,
+        7257,
+        6783,
+        6500,
+        7017,
+        7009
+      ]
+    },
+    "cpu_ccd1_c": {
+      "edges": [
+        41.0,
+        53.375,
+        57.125,
+        59.125,
+        60.5,
+        61.5,
+        62.375,
+        63.375,
+        64.5,
+        67.875,
+        85.125
+      ],
+      "counts": [
+        6630,
+        6323,
+        6892,
+        5980,
+        6899,
+        5723,
+        7192,
+        7589,
+        6974,
+        6923
+      ]
+    },
+    "cpu_ccd2_c": {
+      "edges": [
+        39.75,
+        43.125,
+        44.0,
+        44.5,
+        45.25,
+        46.5,
+        48.625,
+        51.625,
+        55.25,
+        57.75,
+        78.375
+      ],
+      "counts": [
+        3702,
+        9660,
+        6165,
+        7162,
+        6614,
+        6779,
+        6639,
+        6931,
+        6465,
+        7008
+      ]
+    },
+    "cpu_package_power_w": {
+      "edges": [
+        0.0,
+        112.01834869384766,
+        114.86083526611328,
+        116.89621276855469,
+        118.6760498046875,
+        120.34886932373047,
+        122.10885467529297,
+        124.16231536865234,
+        126.76944274902344,
+        130.4912567138672,
+        189.3433074951172
+      ],
+      "counts": [
+        6713,
+        6712,
+        6713,
+        6712,
+        6712,
+        6713,
+        6712,
+        6713,
+        6712,
+        6713
+      ]
+    }
+  },
+  "feature_evidence": "Top absolute robust deviations from the training median; descriptive, not causal attributions.",
+  "anomaly_score_semantics": "Higher means more unusual under this fitted detector; it is not a probability."
+}

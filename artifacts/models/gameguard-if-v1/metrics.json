@@ -1,0 +1,135 @@
+{
+  "dataset_id": "rmems/gaming-telemetry",
+  "dataset_config": "re4",
+  "dataset_sha256": "5830ed487fb9b0e330894009be96474b55b2e2e136a1b09e578ded6d8f9f9b19",
+  "labels_available": false,
+  "supervised_metrics_reported": false,
+  "evaluation_note": "No verified anomaly labels; alert rates and score stability are descriptive, not precision/recall.",
+  "primary_detector": "Isolation Forest",
+  "threshold_selection": "99th percentile of chronological validation anomaly scores (1% alert budget)",
+  "validation": {
+    "statistical_thresholds": {
+      "rows": 14384,
+      "threshold": 10.260549374607645,
+      "alert_count": 168,
+      "alert_rate": 0.01167964404894327,
+      "score_p50": 3.108522630631265,
+      "score_p95": 7.55128202229663,
+      "score_p99": 10.260549374607645,
+      "alert_rate_by_test_time_block": [
+        0.0,
+        0.0003475842891901286,
+        0.058046576294751476,
+        0.0,
+        0.0
+      ],
+      "alert_rate_block_range": 0.058046576294751476
+    },
+    "isolation_forest": {
+      "rows": 14384,
+      "threshold": 0.11180484399749285,
+      "alert_count": 144,
+      "alert_rate": 0.010011123470522803,
+      "score_p50": -0.04396793662813306,
+      "score_p95": 0.07012438038707855,
+      "score_p99": 0.11180484399749285,
+      "alert_rate_by_test_time_block": [
+        0.001043115438108484,
+        0.03336809176225235,
+        0.010427528675703858,
+        0.0024330900243309003,
+        0.002780674313521029
+      ],
+      "alert_rate_block_range": 0.03232497632414386
+    },
+    "local_outlier_factor": {
+      "rows": 14384,
+      "threshold": 1.6433113454579016,
+      "alert_count": 144,
+      "alert_rate": 0.010011123470522803,
+      "score_p50": -0.4290629567231623,
+      "score_p95": 0.6860236777972515,
+      "score_p99": 1.6433113454579016,
+      "alert_rate_by_test_time_block": [
+        0.0,
+        0.021550225929787975,
+        0.028501911713590546,
+        0.0,
+        0.0
+      ],
+      "alert_rate_block_range": 0.028501911713590546
+    }
+  },
+  "test": {
+    "statistical_thresholds": {
+      "rows": 14384,
+      "threshold": 10.260549374607645,
+      "alert_count": 550,
+      "alert_rate": 0.038236929922135704,
+      "score_p50": 2.529340348037232,
+      "score_p95": 9.642580187154229,
+      "score_p99": 8000.0,
+      "alert_rate_by_test_time_block": [
+        0.0003477051460361613,
+        0.0,
+        0.0,
+        0.0003475842891901286,
+        0.19047619047619047
+      ],
+      "alert_rate_block_range": 0.19047619047619047
+    },
+    "isolation_forest": {
+      "rows": 14384,
+      "threshold": 0.11180484399749285,
+      "alert_count": 723,
+      "alert_rate": 0.05026418242491657,
+      "score_p50": -0.07125395299478543,
+      "score_p95": 0.11183623950877608,
+      "score_p99": 0.18285862561142951,
+      "alert_rate_by_test_time_block": [
+        0.05458970792767733,
+        0.0038234271810914148,
+        0.002780674313521029,
+        0.001737921445950643,
+        0.1883906847410497
+      ],
+      "alert_rate_block_range": 0.18665276329509906
+    },
+    "local_outlier_factor": {
+      "rows": 14384,
+      "threshold": 1.6433113454579016,
+      "alert_count": 223,
+      "alert_rate": 0.01550333704115684,
+      "score_p50": -0.45136240492151414,
+      "score_p95": 0.02656872522911975,
+      "score_p99": 12.48586630909816,
+      "alert_rate_by_test_time_block": [
+        0.0,
+        0.0003475842891901286,
+        0.0,
+        0.0,
+        0.07716371220020855
+      ],
+      "alert_rate_block_range": 0.07716371220020855
+    }
+  },
+  "synthetic_injection_check": {
+    "kind": "synthetic_feature_shift_sanity_check",
+    "rows": 128,
+    "median_control_score": -0.06210940807183385,
+    "median_injected_score": 0.07859794739208109,
+    "injected_above_threshold_rate": 0.046875,
+    "injected_score_exceeds_control_rate": 1.0,
+    "interpretation": "Artificial extreme values exercise scoring only; they are not real anomalies or labels."
+  },
+  "model_fit_seconds": 12.371,
+  "dataset_validation": {
+    "rows": 95893,
+    "missing_values": {},
+    "duplicate_timestamps": 0,
+    "out_of_range": {},
+    "unexpected_columns": [],
+    "monotonic_timestamps": true
+  },
+  "train_rows_per_second_including_evaluation": 7751.62
+}

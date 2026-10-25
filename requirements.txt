@@ -1,0 +1,15 @@
+alembic==1.14.1
+fastapi==0.115.8
+joblib==1.4.2
+numpy==2.2.2
+pandas==2.2.3
+pyarrow==19.0.1
+plotly==6.0.0
+psycopg[binary]==3.2.4
+psutil==7.0.0
+pydantic==2.10.6
+scikit-learn==1.6.1
+sqlalchemy==2.0.38
+streamlit==1.42.0
+requests==2.32.3
+uvicorn[standard]==0.34.0
